@@ -1,0 +1,6 @@
+framework module Pods_InternationalBusinessMenTests {
+  umbrella header "Pods-InternationalBusinessMenTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
