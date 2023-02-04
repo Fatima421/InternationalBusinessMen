@@ -8,7 +8,7 @@
 import Foundation
 
 struct TransactionModel: Identifiable {
-    var id: String
+    var id: UUID
     var sku: String
     var amount: Double
     var currency: String
@@ -16,7 +16,7 @@ struct TransactionModel: Identifiable {
 
 extension TransactionModel {
     init(transactionModelResponse: TransactionAPIModel) {
-        self.id = transactionModelResponse.sku
+        self.id = UUID()
         self.sku = transactionModelResponse.sku
         self.amount = transactionModelResponse.amount
         self.currency = transactionModelResponse.currency

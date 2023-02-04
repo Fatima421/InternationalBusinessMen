@@ -14,9 +14,9 @@ enum IBMURLString {
     var url: String {
         switch self {
         case .conversionRate:
-            return "\(baseURLString)\rates"
+            return "\(baseURLString)/rates"
         case .transaction:
-            return "\(baseURLString)\transactions"
+            return "\(baseURLString)/transactions"
         }
     }
     

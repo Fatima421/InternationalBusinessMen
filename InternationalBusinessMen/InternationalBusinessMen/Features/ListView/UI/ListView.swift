@@ -11,15 +11,23 @@ struct ListView: View {
     @ObservedObject var viewModel: ListViewModel
     
     var body: some View {
-        LazyVStack {
-            ForEach(viewModel.tradesList) { trade in
-                Text(trade.sku)
+        NavigationView {
+            VStack(alignment: .trailing) {
+                Text("Elements: \(viewModel.tradesList.count)")
+                List {
+                    ForEach(viewModel.tradesList) { trade in
+                        HStack {
+                            Text("SKU: \(trade.sku)")
+                            Spacer()
+                            Text("Total: \(10.0)")
+                        }
+                    }
+                }
+                .navigationTitle("Trade List")
+                .listStyle(.inset)
             }
+            .padding(.horizontal)
         }
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-            .onAppear {
-                viewModel.onViewAppeared()
-            }
     }
 }
 

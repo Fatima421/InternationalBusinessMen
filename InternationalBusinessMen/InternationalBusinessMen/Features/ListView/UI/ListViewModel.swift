@@ -14,12 +14,13 @@ class ListViewModel: ObservableObject {
     init() {
         getConversionRatesUseCase = ListViewProvider.getConversionRates
         getTransactionsUseCase = ListViewProvider.getTransactions
+        onViewAppeared()
     }
     
     // MARK: Screen Events
     func onViewAppeared() {
         Task {
-            await loadConversionRates()
+            await loadTransactions()
         }
     }
     
@@ -34,7 +35,10 @@ class ListViewModel: ObservableObject {
     private func loadTransactions() async {
         do {
             let transactionList = try await getTransactionsUseCase.invoke()
-            self.tradesList = transactionList
+            print(transactionList)
+            await MainActor.run {
+                self.tradesList = transactionList
+            }
         } catch {
             debugPrint(error.localizedDescription)
         }
