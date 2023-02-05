@@ -13,11 +13,11 @@ final class ListViewProvider {
     static let getConversionRates = GetConversionRatesUseCaseImpl(dataSource: listViewDataSource)
     static let getTransactions = GetTransactionsUseCaseImpl(dataSource: listViewDataSource)
     
-    static func listViewModel() -> ListViewModel {
-        ListViewModel()
+    static func listViewModel(_ coordinator: FlowCoordinator) -> ListViewModel {
+        ListViewModel(coordinator: coordinator)
     }
     
-    static func listView() -> ListView {
-        ListView(viewModel: listViewModel())
+    static func listView(coordinator: FlowCoordinator) -> ListView {
+        ListView(viewModel: listViewModel(coordinator))
     }
 }

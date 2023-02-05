@@ -8,15 +8,15 @@
 import Foundation
 
 struct ConversionModel {
-    var from: String
-    var to: String
+    var from: Currency
+    var to: Currency
     var rate: Double
 }
 
 extension ConversionModel {
     init(conversionModelResponse: ConversionAPIModel) {
-        self.from = conversionModelResponse.from
-        self.to = conversionModelResponse.to
+        self.from = Currency(rawValue: conversionModelResponse.from) ?? .EUR
+        self.to = Currency(rawValue: conversionModelResponse.to) ?? .EUR
         self.rate = conversionModelResponse.rate
     }  
 }

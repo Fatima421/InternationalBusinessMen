@@ -11,7 +11,8 @@ struct TransactionModel: Identifiable {
     var id: UUID
     var sku: String
     var amount: Double
-    var currency: String
+    var currency: Currency
+    var totalPrice: Double = 0
 }
 
 extension TransactionModel {
@@ -19,6 +20,6 @@ extension TransactionModel {
         self.id = UUID()
         self.sku = transactionModelResponse.sku
         self.amount = transactionModelResponse.amount
-        self.currency = transactionModelResponse.currency
+        self.currency = Currency(rawValue: transactionModelResponse.currency) ?? .EUR
     }
 }

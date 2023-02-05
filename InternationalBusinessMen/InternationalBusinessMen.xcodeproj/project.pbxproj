@@ -39,6 +39,13 @@
 		4A93F17A298D64BC002D24AA /* GetConversionRatesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A93F179298D64BC002D24AA /* GetConversionRatesUseCase.swift */; };
 		4A93F17C298D64DB002D24AA /* GetTransactionsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A93F17B298D64DB002D24AA /* GetTransactionsUseCase.swift */; };
 		4A93F17E298D6592002D24AA /* ListViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A93F17D298D6592002D24AA /* ListViewProvider.swift */; };
+		4A93F182298EB16E002D24AA /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A93F181298EB16E002D24AA /* DetailView.swift */; };
+		4A93F186298EB1EF002D24AA /* FlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A93F185298EB1EF002D24AA /* FlowCoordinator.swift */; };
+		4A93F188298EB231002D24AA /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A93F187298EB231002D24AA /* MainCoordinator.swift */; };
+		4A93F18A298EB2AC002D24AA /* ViewModelCoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A93F189298EB2AC002D24AA /* ViewModelCoordinatorProtocol.swift */; };
+		4A93F18C298EB353002D24AA /* DetailViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A93F18B298EB353002D24AA /* DetailViewProvider.swift */; };
+		4A93F18F298EB58A002D24AA /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A93F18E298EB58A002D24AA /* ListViewController.swift */; };
+		4A93F191298EE8E2002D24AA /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A93F190298EE8E2002D24AA /* Currency.swift */; };
 		554A281CCE09A40709FCED27 /* Pods_InternationalBusinessMenTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E6D65DAA6BD9184E945C5E8 /* Pods_InternationalBusinessMenTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -95,6 +102,13 @@
 		4A93F179298D64BC002D24AA /* GetConversionRatesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetConversionRatesUseCase.swift; sourceTree = "<group>"; };
 		4A93F17B298D64DB002D24AA /* GetTransactionsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTransactionsUseCase.swift; sourceTree = "<group>"; };
 		4A93F17D298D6592002D24AA /* ListViewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewProvider.swift; sourceTree = "<group>"; };
+		4A93F181298EB16E002D24AA /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		4A93F185298EB1EF002D24AA /* FlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowCoordinator.swift; sourceTree = "<group>"; };
+		4A93F187298EB231002D24AA /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
+		4A93F189298EB2AC002D24AA /* ViewModelCoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelCoordinatorProtocol.swift; sourceTree = "<group>"; };
+		4A93F18B298EB353002D24AA /* DetailViewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewProvider.swift; sourceTree = "<group>"; };
+		4A93F18E298EB58A002D24AA /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
+		4A93F190298EE8E2002D24AA /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
 		6EE9824327799BE19E45095E /* Pods-InternationalBusinessMen-InternationalBusinessMenUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InternationalBusinessMen-InternationalBusinessMenUITests.release.xcconfig"; path = "Target Support Files/Pods-InternationalBusinessMen-InternationalBusinessMenUITests/Pods-InternationalBusinessMen-InternationalBusinessMenUITests.release.xcconfig"; sourceTree = "<group>"; };
 		8E6D65DAA6BD9184E945C5E8 /* Pods_InternationalBusinessMenTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InternationalBusinessMenTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9174529CA8A48E318B35E46E /* Pods-InternationalBusinessMenTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InternationalBusinessMenTests.debug.xcconfig"; path = "Target Support Files/Pods-InternationalBusinessMenTests/Pods-InternationalBusinessMenTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -157,6 +171,7 @@
 		4A93F111298D489A002D24AA /* InternationalBusinessMen */ = {
 			isa = PBXGroup;
 			children = (
+				4A93F184298EB1DF002D24AA /* Coordinator */,
 				4A93F13D298D499E002D24AA /* Common */,
 				4A93F166298D5FEE002D24AA /* Features */,
 				4A93F13C298D4994002D24AA /* Resources */,
@@ -291,6 +306,7 @@
 			isa = PBXGroup;
 			children = (
 				4A93F167298D5FF7002D24AA /* ListView */,
+				4A93F180298EB158002D24AA /* DetailView */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -319,6 +335,7 @@
 			isa = PBXGroup;
 			children = (
 				4A93F173298D62C7002D24AA /* ListViewDataSourceImpl.swift */,
+				4A93F190298EE8E2002D24AA /* Currency.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -331,6 +348,42 @@
 				4A93F17B298D64DB002D24AA /* GetTransactionsUseCase.swift */,
 			);
 			path = Domain;
+			sourceTree = "<group>";
+		};
+		4A93F180298EB158002D24AA /* DetailView */ = {
+			isa = PBXGroup;
+			children = (
+				4A93F183298EB179002D24AA /* UI */,
+				4A93F18B298EB353002D24AA /* DetailViewProvider.swift */,
+			);
+			path = DetailView;
+			sourceTree = "<group>";
+		};
+		4A93F183298EB179002D24AA /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				4A93F181298EB16E002D24AA /* DetailView.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		4A93F184298EB1DF002D24AA /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				4A93F18D298EB57D002D24AA /* Representable */,
+				4A93F185298EB1EF002D24AA /* FlowCoordinator.swift */,
+				4A93F187298EB231002D24AA /* MainCoordinator.swift */,
+				4A93F189298EB2AC002D24AA /* ViewModelCoordinatorProtocol.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		4A93F18D298EB57D002D24AA /* Representable */ = {
+			isa = PBXGroup;
+			children = (
+				4A93F18E298EB58A002D24AA /* ListViewController.swift */,
+			);
+			path = Representable;
 			sourceTree = "<group>";
 		};
 		8B44C368C542AE44AC919CF0 /* Pods */ = {
@@ -535,7 +588,7 @@
 		4A93F152298D4BD3002D24AA /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
-			buildActionMask = 12;
+			buildActionMask = 8;
 			files = (
 			);
 			inputFileListPaths = (
@@ -547,7 +600,7 @@
 			);
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nexport PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftlint >/dev/null; then  \n  swiftlint\n  echo \"execute SwiftLint success\"\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
@@ -602,11 +655,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A93F191298EE8E2002D24AA /* Currency.swift in Sources */,
+				4A93F18C298EB353002D24AA /* DetailViewProvider.swift in Sources */,
 				4A93F178298D6338002D24AA /* TransactionModel.swift in Sources */,
+				4A93F188298EB231002D24AA /* MainCoordinator.swift in Sources */,
 				4A93F115298D489A002D24AA /* ContentView.swift in Sources */,
+				4A93F186298EB1EF002D24AA /* FlowCoordinator.swift in Sources */,
+				4A93F18F298EB58A002D24AA /* ListViewController.swift in Sources */,
 				4A93F14C298D4AA3002D24AA /* GeneratedUtils.swift in Sources */,
 				4A93F15F298D507B002D24AA /* RestManagerAsync.swift in Sources */,
 				4A93F17A298D64BC002D24AA /* GetConversionRatesUseCase.swift in Sources */,
+				4A93F182298EB16E002D24AA /* DetailView.swift in Sources */,
 				4A93F17E298D6592002D24AA /* ListViewProvider.swift in Sources */,
 				4A93F150298D4B4F002D24AA /* Strings.swift in Sources */,
 				4A93F15D298D4E3A002D24AA /* RestError.swift in Sources */,
@@ -623,6 +682,7 @@
 				4A93F172298D6103002D24AA /* TransactionAPIModel.swift in Sources */,
 				4A93F113298D489A002D24AA /* InternationalBusinessMenApp.swift in Sources */,
 				4A93F165298D5CC3002D24AA /* Constants.swift in Sources */,
+				4A93F18A298EB2AC002D24AA /* ViewModelCoordinatorProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

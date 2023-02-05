@@ -11,28 +11,30 @@ struct ListView: View {
     @ObservedObject var viewModel: ListViewModel
     
     var body: some View {
-        NavigationView {
-            VStack(alignment: .trailing) {
-                Text("Elements: \(viewModel.tradesList.count)")
-                List {
-                    ForEach(viewModel.tradesList) { trade in
-                        HStack {
-                            Text("SKU: \(trade.sku)")
-                            Spacer()
-                            Text("Total: \(10.0)")
-                        }
+        VStack(alignment: .trailing) {
+            Text("Elements: \(viewModel.tradesList.count)")
+            List {
+                ForEach(viewModel.tradesList) { trade in
+                    HStack {
+                        Text("SKU: \(trade.sku)")
+                        Spacer()
+                        Text("Total: \(trade.totalPrice)€")
+                    }
+                    .onTapGesture {
+                        print("pasa por aqui \(trade.sku)")
+                        viewModel.goToDetailView()
                     }
                 }
-                .navigationTitle("Trade List")
-                .listStyle(.inset)
             }
-            .padding(.horizontal)
+            .navigationTitle("Trade List")
+            .listStyle(.inset)
         }
+        .padding(.horizontal)
     }
 }
 
 struct ListView_Previews: PreviewProvider {
     static var previews: some View {
-        ListViewProvider.listView()
+        ListViewProvider.listView(coordinator: MainCoordinator.fakeCoordinator)
     }
 }
