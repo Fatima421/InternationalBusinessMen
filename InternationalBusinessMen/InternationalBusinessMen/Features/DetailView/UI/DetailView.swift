@@ -10,16 +10,30 @@ import SwiftUI
 struct DetailView: View {
     @ObservedObject var viewModel: DetailViewModel
     var body: some View {
-        Text("Products with this SKU: ")
-        ForEach(viewModel.tradeList) { trade in
-            Text(trade.sku)
-        }
+        VStack {
+            List {
+                Text("SKU: \(viewModel.groupedTransaction.sku)")
+                    .font(.title)
+                Text("Amount: ")
+                    .font(.headline)
+                ForEach(viewModel.groupedTransaction.currenciesAmounts, id: \.currency) { currencyAmount in
+                    HStack {
+                        Text("\(currencyAmount.amount, specifier: "%.2f") \(currencyAmount.currency.rawValue)")
+                    }
+                }
+                Text("Total: \(viewModel.totalPrice, specifier: "%.2f") EUR")
+            }
+            .listStyle(.inset)
+        }.padding()
     }
 }
 
 struct DetailView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailViewProvider.detailView(tradeList: [],
+        DetailViewProvider.detailView(groupedTransaction: GroupedTransactionModel(id: UUID(),
+                                                                                  sku: "",
+                                                                                  count: 0,
+                                                                                  currenciesAmounts: []),
                                       coordinator: MainCoordinator.fakeCoordinator)
     }
 }

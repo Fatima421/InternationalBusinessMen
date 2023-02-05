@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct TransactionModel: Identifiable, Hashable {
     var id: UUID
@@ -30,11 +31,4 @@ extension TransactionModel {
     static func == (lhs: TransactionModel, rhs: TransactionModel) -> Bool {
         return lhs.sku == rhs.sku
     }
-}
-
-struct GroupedTransactionModel {
-    var sku: String
-    var count: Int
-    var currencies: [Currency]
-    var amount: [Double]
 }

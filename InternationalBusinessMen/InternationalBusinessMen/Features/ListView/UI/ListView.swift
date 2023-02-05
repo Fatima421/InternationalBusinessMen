@@ -12,23 +12,25 @@ struct ListView: View {
     
     var body: some View {
         VStack(alignment: .trailing) {
-            Text("Elements: \(viewModel.tradeList.count)")
+            HStack {
+                Text("Total Elements: \(viewModel.tradeList.count)")
+                Spacer()
+                Text("Grouped Elements: \(viewModel.groupedTransactions.count)")
+            }
             List {
-                ForEach(viewModel.tradeList) { trade in
+                ForEach(viewModel.groupedTransactions) { transaction in
                     HStack {
-                        Text("SKU: \(trade.sku)")
+                        Text("SKU: \(transaction.sku)")
                         Spacer()
-                        Text("Amount: \(trade.amount, specifier: "%.2f") \(trade.currency.rawValue)")
                     }
                     .onTapGesture {
-                        viewModel.goToDetailView()
+                        viewModel.goToDetailView(transaction)
                     }
                 }
             }
-            .navigationTitle("Trade List")
             .listStyle(.inset)
         }
-        .padding(.horizontal)
+        .padding()
     }
 }
 

@@ -9,5 +9,5 @@ import SwiftUI
 
 protocol FlowCoordinator: AnyObject {
     func getMainListFlow() -> UINavigationController
-    func goToDetailView(tradeList: [TransactionModel])
+    func goToDetailView(groupedTransaction: GroupedTransactionModel)
 }

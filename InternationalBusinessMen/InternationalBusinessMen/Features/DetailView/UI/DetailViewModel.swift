@@ -8,24 +8,32 @@
 import Foundation
 
 class DetailViewModel: ViewModelCoordinator, ObservableObject {
-    @Published var tradeList: [GroupedTransactionModel]
+    @Published var groupedTransaction: GroupedTransactionModel
     @Published private var conversionList: [ConversionModel] = []
     private let getConversionRatesUseCase: GetConversionRatesUseCase
     @Published var totalPrice: Double = 0.00
 
     
-    init(tradeList: [GroupedTransactionModel],
+    init(groupedTransaction: GroupedTransactionModel,
          getConversionRatesUseCase: GetConversionRatesUseCase,
          coordinator: FlowCoordinator) {
-        self.tradeList = tradeList
+        self.groupedTransaction = groupedTransaction
         self.getConversionRatesUseCase = getConversionRatesUseCase
         
         super.init()
         self.coordinator = coordinator
+        self.onViewAppeared()
     }
     
     required init() {
         fatalError("init() has not been implemented")
+    }
+    
+    // MARK: Screen Events
+    func onViewAppeared() {
+        Task {
+            await loadConversionRates()
+        }
     }
     
     // MARK: API call
@@ -44,15 +52,11 @@ class DetailViewModel: ViewModelCoordinator, ObservableObject {
     // MARK: Conversions
     @MainActor
     private func currencyConversion() {
-        let formatter = NumberFormatter()
-        formatter.maximumFractionDigits = 2
-        formatter.numberStyle = .decimal
-        
-        tradeList.indices.forEach { index in
-            tradeList[index].totalPrice = getAmountConverted(from: tradeList[index].currency,
-                                                             to: .EUR,
-                                                             amount: tradeList[index].amount)
+        for amount in groupedTransaction.currenciesAmounts {
+            let convertedAmount = getAmountConverted(from: amount.currency, to: .EUR, amount: amount.amount)
+            totalPrice += convertedAmount
         }
+        totalPrice = totalPrice.rounded(.toNearestOrAwayFromZero)
     }
     
     private func getAmountConverted(from: Currency, to: Currency, amount: Double) -> Double {

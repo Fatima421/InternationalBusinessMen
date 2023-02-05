@@ -12,11 +12,11 @@ final class DetailViewProvider {
     static let detailViewDataSource = DetailViewDataSourceImpl(API)
     static let getConversionRates = GetConversionRatesUseCaseImpl(dataSource: detailViewDataSource)
     
-    static func detailViewModel(tradeList: [TransactionModel], coordinator: FlowCoordinator) -> DetailViewModel {
-        DetailViewModel(tradeList: tradeList, getConversionRatesUseCase: getConversionRates, coordinator: coordinator)
+    static func detailViewModel(groupedTransaction: GroupedTransactionModel, coordinator: FlowCoordinator) -> DetailViewModel {
+        DetailViewModel(groupedTransaction: groupedTransaction, getConversionRatesUseCase: getConversionRates, coordinator: coordinator)
     }
     
-    static func detailView(tradeList: [TransactionModel], coordinator: FlowCoordinator) -> DetailView {
-        DetailView(viewModel: detailViewModel(tradeList: tradeList, coordinator: coordinator))
+    static func detailView(groupedTransaction: GroupedTransactionModel, coordinator: FlowCoordinator) -> DetailView {
+        DetailView(viewModel: detailViewModel(groupedTransaction: groupedTransaction, coordinator: coordinator))
     }
 }

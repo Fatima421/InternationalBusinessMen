@@ -11,7 +11,8 @@ class ListViewModel: ViewModelCoordinator, ObservableObject {
     private let getTransactionsUseCase: GetTransactionsUseCase
     @Published var tradeList: [TransactionModel] = []
     private var reducedList: [TransactionModel: Int] = [:]
-        
+    @Published var groupedTransactions: [GroupedTransactionModel] = []
+    
     init(getTransactionsUseCase: GetTransactionsUseCase, coordinator: FlowCoordinator) {
         self.getTransactionsUseCase = getTransactionsUseCase
         
@@ -19,7 +20,7 @@ class ListViewModel: ViewModelCoordinator, ObservableObject {
         self.coordinator = coordinator
         self.onViewAppeared()
     }
-
+    
     required init() {
         fatalError("init() has not been implemented")
     }
@@ -28,7 +29,7 @@ class ListViewModel: ViewModelCoordinator, ObservableObject {
     func onViewAppeared() {
         Task {
             await loadTransactions()
-            groupTransactionBySKU()
+            
         }
     }
     
@@ -38,47 +39,31 @@ class ListViewModel: ViewModelCoordinator, ObservableObject {
             let transactionList = try await getTransactionsUseCase.invoke()
             await MainActor.run {
                 self.tradeList = transactionList
+                self.groupTransactionsBySKU()
             }
         } catch {
             debugPrint(error.localizedDescription)
         }
     }
-    
-    func groupTransactionBySKU() -> [GroupedTransactionModel] {
-        var groupedTransactions = [String: GroupedTransactionModel]()
-        
+
+    func groupTransactionsBySKU() {
+        var result = [String: GroupedTransactionModel]()
         for transaction in tradeList {
-            if groupedTransactions[transaction.sku] == nil {
-                groupedTransactions[transaction.sku] = GroupedTransactionModel(sku: transaction.sku, count: 1, currencies: [transaction.currency], amount: [transaction.amount])
+            if result[transaction.sku] == nil {
+                result[transaction.sku] = GroupedTransactionModel(id: UUID(),
+                                                                  sku: transaction.sku,
+                                                                  count: 1,
+                                                                  currenciesAmounts: [(transaction.currency, transaction.amount)])
             } else {
-                var existingTransaction = groupedTransactions[transaction.sku]
-                existingTransaction?.count += 1
-                existingTransaction?.currencies.append(transaction.currency)
-                existingTransaction?.amount.append(transaction.amount)
-                groupedTransactions[transaction.sku] = existingTransaction
+                result[transaction.sku]?.count += 1
+                result[transaction.sku]?.currenciesAmounts.append((transaction.currency, transaction.amount))
             }
         }
-        
-        return Array(groupedTransactions.values)
+        self.groupedTransactions = Array(result.values)
     }
-//    private func removeDuplicates() {
-//        var uniqueTradeList: [TransactionModel] = []
-//
-//        for transaction in tradeList {
-//            reducedList[transaction, default: 0] += 1
-//        }
-//
-//        for (transaction, count) in reducedList {
-//            var uniqueTransaction = transaction
-//            uniqueTransaction.quantity = [transaction: count]
-//            print(uniqueTransaction.quantity)
-//            uniqueTradeList.append(uniqueTransaction)
-//        }
-//        self.tradeList = uniqueTradeList
-//    }
     
     // MARK: Navigation
-    func goToDetailView() {
-        coordinator.goToDetailView(tradeList: tradeList)
+    func goToDetailView(_ groupedTransaction: GroupedTransactionModel) {
+        coordinator.goToDetailView(groupedTransaction: groupedTransaction)
     }
 }
