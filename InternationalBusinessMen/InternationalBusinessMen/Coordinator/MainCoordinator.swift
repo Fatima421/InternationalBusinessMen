@@ -29,8 +29,9 @@ final class MainCoordinator: FlowCoordinator, ObservableObject {
     }
     
     // MARK: Navigation
-    func goToDetailView() {
-        let viewController = UIHostingController(rootView: DetailViewProvider.detailView())
+    func goToDetailView(tradeList: [TransactionModel]) {
+        let viewController = UIHostingController(rootView: DetailViewProvider.detailView(tradeList: tradeList,
+                                                                                         coordinator: self))
         viewController.navigationItem.title = "Transaction Detail"
         navigation.pushViewController(viewController, animated: true)
     }

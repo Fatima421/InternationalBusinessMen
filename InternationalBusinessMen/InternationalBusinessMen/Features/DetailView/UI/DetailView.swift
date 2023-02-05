@@ -8,13 +8,18 @@
 import SwiftUI
 
 struct DetailView: View {
+    @ObservedObject var viewModel: DetailViewModel
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Text("Products with this SKU: ")
+        ForEach(viewModel.tradeList) { trade in
+            Text(trade.sku)
+        }
     }
 }
 
 struct DetailView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailView()
+        DetailViewProvider.detailView(tradeList: [],
+                                      coordinator: MainCoordinator.fakeCoordinator)
     }
 }

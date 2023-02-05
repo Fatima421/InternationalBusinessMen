@@ -14,10 +14,6 @@ class ListViewDataSourceImpl: ListViewDataSource {
         self.API = API
     }
     
-    func getConversionRates() async throws -> [ConversionModel] {
-        try await API.getConversionRates().map { ConversionModel(conversionModelResponse: $0) }
-    }
-    
     func getTransactions() async throws -> [TransactionModel] {
         try await API.getTransactions().map { TransactionModel(transactionModelResponse: $0) }
     }

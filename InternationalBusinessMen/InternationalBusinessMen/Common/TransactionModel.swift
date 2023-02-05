@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct TransactionModel: Identifiable {
+struct TransactionModel: Identifiable, Hashable {
     var id: UUID
     var sku: String
     var amount: Double
@@ -22,4 +22,19 @@ extension TransactionModel {
         self.amount = transactionModelResponse.amount
         self.currency = Currency(rawValue: transactionModelResponse.currency) ?? .EUR
     }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(sku)
+    }
+    
+    static func == (lhs: TransactionModel, rhs: TransactionModel) -> Bool {
+        return lhs.sku == rhs.sku
+    }
+}
+
+struct GroupedTransactionModel {
+    var sku: String
+    var count: Int
+    var currencies: [Currency]
+    var amount: [Double]
 }

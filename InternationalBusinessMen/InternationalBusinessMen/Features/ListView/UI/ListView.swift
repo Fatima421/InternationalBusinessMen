@@ -12,16 +12,15 @@ struct ListView: View {
     
     var body: some View {
         VStack(alignment: .trailing) {
-            Text("Elements: \(viewModel.tradesList.count)")
+            Text("Elements: \(viewModel.tradeList.count)")
             List {
-                ForEach(viewModel.tradesList) { trade in
+                ForEach(viewModel.tradeList) { trade in
                     HStack {
                         Text("SKU: \(trade.sku)")
                         Spacer()
-                        Text("Total: \(trade.totalPrice)€")
+                        Text("Amount: \(trade.amount, specifier: "%.2f") \(trade.currency.rawValue)")
                     }
                     .onTapGesture {
-                        print("pasa por aqui \(trade.sku)")
                         viewModel.goToDetailView()
                     }
                 }

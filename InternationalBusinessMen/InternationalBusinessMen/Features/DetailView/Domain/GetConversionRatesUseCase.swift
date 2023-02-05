@@ -12,9 +12,9 @@ protocol GetConversionRatesUseCase {
 }
 
 class GetConversionRatesUseCaseImpl: GetConversionRatesUseCase {
-    private let dataSource: ListViewDataSource
+    private let dataSource: DetailDataSource
 
-    init(dataSource: ListViewDataSource) {
+    init(dataSource: DetailDataSource) {
         self.dataSource = dataSource
     }
 

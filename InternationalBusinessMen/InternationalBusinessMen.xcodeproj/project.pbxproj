@@ -46,6 +46,9 @@
 		4A93F18C298EB353002D24AA /* DetailViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A93F18B298EB353002D24AA /* DetailViewProvider.swift */; };
 		4A93F18F298EB58A002D24AA /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A93F18E298EB58A002D24AA /* ListViewController.swift */; };
 		4A93F191298EE8E2002D24AA /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A93F190298EE8E2002D24AA /* Currency.swift */; };
+		4A93F193299012F3002D24AA /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A93F192299012F3002D24AA /* DetailViewModel.swift */; };
+		4A93F197299014F2002D24AA /* DetailViewDataSourceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A93F196299014F2002D24AA /* DetailViewDataSourceImpl.swift */; };
+		4A93F1992990150B002D24AA /* DetailDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A93F1982990150B002D24AA /* DetailDataSource.swift */; };
 		554A281CCE09A40709FCED27 /* Pods_InternationalBusinessMenTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E6D65DAA6BD9184E945C5E8 /* Pods_InternationalBusinessMenTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -109,6 +112,9 @@
 		4A93F18B298EB353002D24AA /* DetailViewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewProvider.swift; sourceTree = "<group>"; };
 		4A93F18E298EB58A002D24AA /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		4A93F190298EE8E2002D24AA /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
+		4A93F192299012F3002D24AA /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
+		4A93F196299014F2002D24AA /* DetailViewDataSourceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewDataSourceImpl.swift; sourceTree = "<group>"; };
+		4A93F1982990150B002D24AA /* DetailDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailDataSource.swift; sourceTree = "<group>"; };
 		6EE9824327799BE19E45095E /* Pods-InternationalBusinessMen-InternationalBusinessMenUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InternationalBusinessMen-InternationalBusinessMenUITests.release.xcconfig"; path = "Target Support Files/Pods-InternationalBusinessMen-InternationalBusinessMenUITests/Pods-InternationalBusinessMen-InternationalBusinessMenUITests.release.xcconfig"; sourceTree = "<group>"; };
 		8E6D65DAA6BD9184E945C5E8 /* Pods_InternationalBusinessMenTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InternationalBusinessMenTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9174529CA8A48E318B35E46E /* Pods-InternationalBusinessMenTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InternationalBusinessMenTests.debug.xcconfig"; path = "Target Support Files/Pods-InternationalBusinessMenTests/Pods-InternationalBusinessMenTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -343,9 +349,8 @@
 		4A93F16C298D603F002D24AA /* Domain */ = {
 			isa = PBXGroup;
 			children = (
-				4A93F175298D62F3002D24AA /* ListViewDataSource.swift */,
-				4A93F179298D64BC002D24AA /* GetConversionRatesUseCase.swift */,
 				4A93F17B298D64DB002D24AA /* GetTransactionsUseCase.swift */,
+				4A93F175298D62F3002D24AA /* ListViewDataSource.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -353,6 +358,8 @@
 		4A93F180298EB158002D24AA /* DetailView */ = {
 			isa = PBXGroup;
 			children = (
+				4A93F194299014CF002D24AA /* Data */,
+				4A93F195299014D7002D24AA /* Domain */,
 				4A93F183298EB179002D24AA /* UI */,
 				4A93F18B298EB353002D24AA /* DetailViewProvider.swift */,
 			);
@@ -363,6 +370,7 @@
 			isa = PBXGroup;
 			children = (
 				4A93F181298EB16E002D24AA /* DetailView.swift */,
+				4A93F192299012F3002D24AA /* DetailViewModel.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -384,6 +392,23 @@
 				4A93F18E298EB58A002D24AA /* ListViewController.swift */,
 			);
 			path = Representable;
+			sourceTree = "<group>";
+		};
+		4A93F194299014CF002D24AA /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				4A93F196299014F2002D24AA /* DetailViewDataSourceImpl.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		4A93F195299014D7002D24AA /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				4A93F179298D64BC002D24AA /* GetConversionRatesUseCase.swift */,
+				4A93F1982990150B002D24AA /* DetailDataSource.swift */,
+			);
+			path = Domain;
 			sourceTree = "<group>";
 		};
 		8B44C368C542AE44AC919CF0 /* Pods */ = {
@@ -657,6 +682,8 @@
 			files = (
 				4A93F191298EE8E2002D24AA /* Currency.swift in Sources */,
 				4A93F18C298EB353002D24AA /* DetailViewProvider.swift in Sources */,
+				4A93F197299014F2002D24AA /* DetailViewDataSourceImpl.swift in Sources */,
+				4A93F193299012F3002D24AA /* DetailViewModel.swift in Sources */,
 				4A93F178298D6338002D24AA /* TransactionModel.swift in Sources */,
 				4A93F188298EB231002D24AA /* MainCoordinator.swift in Sources */,
 				4A93F115298D489A002D24AA /* ContentView.swift in Sources */,
@@ -672,6 +699,7 @@
 				4A93F163298D5B40002D24AA /* IBMURLString.swift in Sources */,
 				4A93F176298D62F3002D24AA /* ListViewDataSource.swift in Sources */,
 				4A93F17C298D64DB002D24AA /* GetTransactionsUseCase.swift in Sources */,
+				4A93F1992990150B002D24AA /* DetailDataSource.swift in Sources */,
 				4A93F174298D62C7002D24AA /* ListViewDataSourceImpl.swift in Sources */,
 				4A93F151298D4B4F002D24AA /* Assets.swift in Sources */,
 				4A93F159298D4D03002D24AA /* ConversionModel.swift in Sources */,

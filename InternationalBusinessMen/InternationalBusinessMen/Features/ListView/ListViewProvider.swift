@@ -10,11 +10,10 @@ import Foundation
 final class ListViewProvider {
     static let API: API = IBMAPI()
     static let listViewDataSource = ListViewDataSourceImpl(API)
-    static let getConversionRates = GetConversionRatesUseCaseImpl(dataSource: listViewDataSource)
     static let getTransactions = GetTransactionsUseCaseImpl(dataSource: listViewDataSource)
     
     static func listViewModel(_ coordinator: FlowCoordinator) -> ListViewModel {
-        ListViewModel(coordinator: coordinator)
+        ListViewModel(getTransactionsUseCase: getTransactions, coordinator: coordinator)
     }
     
     static func listView(coordinator: FlowCoordinator) -> ListView {

@@ -8,6 +8,5 @@
 import Foundation
 
 protocol ListViewDataSource {
-    func getConversionRates() async throws -> [ConversionModel]
     func getTransactions() async throws -> [TransactionModel]
 }
