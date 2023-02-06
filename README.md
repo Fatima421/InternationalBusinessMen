@@ -7,8 +7,14 @@ This app was made as a technical test for a company.  Its goal is to show a list
 - [Project Architecture](#project-architecture)
 
 ## App View
+#### Simple List View
+![Screenshot 2023-02-06 at 19 38 50](https://user-images.githubusercontent.com/72110927/217061665-915c741c-5b2e-4ac2-86e4-db89fb98ddb7.png)
+#### Simple Detail View
+![Screenshot 2023-02-06 at 19 38 55](https://user-images.githubusercontent.com/72110927/217061676-5aabdbe7-8d35-4ea4-a893-7e4b2cfa541e.png)
+#### Generic Error View
+![Screenshot 2023-02-06 at 19 28 30](https://user-images.githubusercontent.com/72110927/217061683-4f2d800b-994c-406b-beeb-a7ebc5327234.png)
 
-## Project structure
+## Project Structure
 The project is organized into folders, with the primary ones being:
 
 - **Common**: It contains the reusable styles, components and utils. In addition, it also has the functions and classes for the api calls. 
