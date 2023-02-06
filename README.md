@@ -23,7 +23,7 @@ The project is organized into folders, with the primary ones being:
 - **Resources**: It has all the data related to assets and localizable strings.
 
 ## Project Architecture
-CLEAN is based in 3 layers (Data, Domain, Presentation/UI). It helps you write better, more organized code and it's also easier to maintain. The data flows like this:
+CLEAN is based in 3 layers (Data, Domain, Presentation/UI). It helps you write a more organized code and it's also easier to maintain. The data flows like this:
 
 ### 📃 DATA
 1. **Database** or **API** → It is the part of your code that communicates with a server to get or send data.
