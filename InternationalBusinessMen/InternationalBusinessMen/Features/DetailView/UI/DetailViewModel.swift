@@ -56,7 +56,7 @@ class DetailViewModel: ViewModelCoordinator, ObservableObject {
             let convertedAmount = getAmountConverted(from: amount.currency, to: .EUR, amount: amount.amount)
             let conversionRate = getConversionRate(from: amount.currency, to: .EUR) ?? 0
             totalPrice += convertedAmount
-            groupedTransaction.exchangeAmount[amount.currency] = CurrencyExchange(exchangeRate: conversionRate, convertedAmount: convertedAmount)
+            groupedTransaction.exchangeAmount[amount.amount] = CurrencyExchange(exchangeRate: conversionRate, convertedAmount: convertedAmount)
         }
         totalPrice = totalPrice.rounded(.toNearestOrAwayFromZero)
     }

@@ -12,7 +12,7 @@ struct GroupedTransactionModel: Identifiable {
     var sku: String
     var count: Int
     var currenciesAmounts: [(currency: Currency, amount: Double)]
-    var exchangeAmount: [Currency: CurrencyExchange] = [:]
+    var exchangeAmount: [Double: CurrencyExchange] = [:]
 }
 
 struct CurrencyExchange {
