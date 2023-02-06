@@ -1,0 +1,15 @@
+
+xcassets:
+    inputs: ${PROJECT_DIR}/${TARGET_NAME}/Resources/Assets.xcassets
+    outputs:
+        templatePath: ${PROJECT_DIR}/${TARGET_NAME}/Common/Utils/SwiftGen/Config/xcassets-swiftui.stencil
+        output: ${PROJECT_DIR}/${TARGET_NAME}/Common/Utils/SwiftGen/GeneratedResources/Assets.swift
+
+strings:
+    inputs: ${PROJECT_DIR}/${TARGET_NAME}/Resources/Localizable/Localizable.strings
+    outputs:
+        templatePath: ${PROJECT_DIR}/${TARGET_NAME}/Common/Utils/SwiftGen/Config/localization-swiftui.stencil
+        output: ${PROJECT_DIR}/${TARGET_NAME}/Common/Utils/SwiftGen/GeneratedResources/Strings.swift
+        params:
+            enumName: L10n
+            lookupFunction: GeneratedUtils.format
