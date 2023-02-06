@@ -1,22 +1,20 @@
 # InternationalBusinessMen
+This app was made as a technical test for a company.  Its goal is to show a list of all the products that company X trades, along with the total sales of each product in different currencies. When the user selects a product, the application shows each of the transactions related to that product and a sum of all the transactions transformed into EUR.
 
 ## Index  
+- [App View](#app-view)
 - [Project structure](#project-structure)
-- [Dependencies](#dependencies)
 - [Project Architecture](#project-architecture)
+
+## App View
 
 ## Project structure
 The project is organized into folders, with the primary ones being:
 
-- **Common**: It contains the reusable styles, components and utils. 
-- **Base**: It contains the base classes.
-- **Feature**: It contains subfolders of each main functionality, and these has all the necessary files for developing the functionality. See the *Features organization* for more detail.
+- **Common**: It contains the reusable styles, components and utils. In addition, it also has the functions and classes for the api calls. 
+- **Coordinator**: It is where all the navigation of the app is managed.
+- **Feature**: This part of the app has folders for each main feature, and each folder has all the necessary files for building that feature.
 - **Resources**: It has all the data related to assets and localizable strings.
-
-## Dependencies
-
-It's prefered to include the Dependencies by SPM, if they are not available we include them by CocoaPods. 
-
 
 ## Project Architecture
 CLEAN is based in 3 layers (Data, Domain, Presentation/UI). It helps you write better, more organized code and it's also easier to maintain. The data flows like this:
@@ -38,3 +36,5 @@ The DataSourceProtocol provides a blueprint for handling data, the UseCases defi
 ### 📱 UI
 7. **ViewModel** → This is the part of your code that prepares the data for the View to display. It might take the data about a task from the UseCase, format it, and make it ready to display in the View.
 8. **View** → It is the part of your code that actually displays the user interface. The View takes the data from the ViewModel.
+
+The ViewModel communicates with the UseCases and the DataSourceProtocol to get the data it needs, and then prepares it for the View to display.
