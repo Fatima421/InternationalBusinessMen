@@ -16,9 +16,13 @@ struct DetailView: View {
                     .font(.title)
                 Text("Amount: ")
                     .font(.headline)
-                ForEach(viewModel.groupedTransaction.currenciesAmounts, id: \.currency) { currencyAmount in
+                ForEach(viewModel.groupedTransaction.currenciesAmounts, id: \.amount) { currencyAmount in
+                    Text("\(currencyAmount.amount, specifier: "%.2f") \(currencyAmount.currency.rawValue)")
+                }
+                ForEach(Array(viewModel.groupedTransaction.exchangeAmount.keys), id: \.self) { currency in
                     HStack {
-                        Text("\(currencyAmount.amount, specifier: "%.2f") \(currencyAmount.currency.rawValue)")
+                        Text("\(viewModel.groupedTransaction.exchangeAmount[currency]?.exchangeRate ?? 0, specifier: "%.2f")")
+                        Text("\(viewModel.groupedTransaction.exchangeAmount[currency]?.convertedAmount ?? 0, specifier: "%.2f") EUR")
                     }
                 }
                 Text("Total: \(viewModel.totalPrice, specifier: "%.2f") EUR")
@@ -33,7 +37,8 @@ struct DetailView_Previews: PreviewProvider {
         DetailViewProvider.detailView(groupedTransaction: GroupedTransactionModel(id: UUID(),
                                                                                   sku: "",
                                                                                   count: 0,
-                                                                                  currenciesAmounts: []),
+                                                                                  currenciesAmounts: [],
+                                                                                  exchangeAmount: [:]),
                                       coordinator: MainCoordinator.fakeCoordinator)
     }
 }
