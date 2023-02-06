@@ -47,6 +47,9 @@ struct ListView: View {
                             .frame(width: 20, height: 20)
                             .foregroundColor(Asset.gray.color)
                     }
+                    .padding()
+                    .background(Asset.green.color)
+                    .cornerRadius(10)
                     .onTapGesture {
                         viewModel.goToDetailView(transaction)
                     }
