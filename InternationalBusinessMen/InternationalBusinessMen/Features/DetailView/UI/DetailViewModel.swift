@@ -12,13 +12,14 @@ class DetailViewModel: ViewModelCoordinator, ObservableObject {
     @Published private var conversionList: [ConversionModel] = []
     private let getConversionRatesUseCase: GetConversionRatesUseCase
     @Published var totalPrice: Double = 0.00
-
+    @Published var state: StateType
     
     init(groupedTransaction: GroupedTransactionModel,
          getConversionRatesUseCase: GetConversionRatesUseCase,
          coordinator: FlowCoordinator) {
         self.groupedTransaction = groupedTransaction
         self.getConversionRatesUseCase = getConversionRatesUseCase
+        self.state = .loading
         
         super.init()
         self.coordinator = coordinator
@@ -38,20 +39,24 @@ class DetailViewModel: ViewModelCoordinator, ObservableObject {
     
     // MARK: API call
     private func loadConversionRates() async {
+        await changeState(to: .loading)
         do {
             let conversionRates = try await getConversionRatesUseCase.invoke()
             await MainActor.run {
                 self.conversionList = conversionRates
+                changeState(to: .loaded)
             }
             await self.currencyConversion()
         } catch {
             debugPrint(error.localizedDescription)
+            let errorType = error as? RestError ?? .badResponse
+            await changeState(to: .error(errorType))
         }
     }
     
     // MARK: Conversions
     @MainActor
-    private func currencyConversion() {
+    func currencyConversion() {
         for amount in groupedTransaction.currenciesAmounts {
             let convertedAmount = getAmountConverted(from: amount.currency, to: .EUR, amount: amount.amount)
             let conversionRate = getConversionRate(from: amount.currency, to: .EUR) ?? 0
@@ -61,7 +66,7 @@ class DetailViewModel: ViewModelCoordinator, ObservableObject {
         totalPrice = totalPrice.rounded(.toNearestOrAwayFromZero)
     }
     
-    private func getAmountConverted(from: Currency, to: Currency, amount: Double) -> Double {
+    func getAmountConverted(from: Currency, to: Currency, amount: Double) -> Double {
         guard let rate = getConversionRate(from: from, to: to) else { return 0 }
         return amount * rate
     }
@@ -78,5 +83,19 @@ class DetailViewModel: ViewModelCoordinator, ObservableObject {
             }
         }
         return nil
+    }
+}
+
+// MARK: ErrorSectionController
+extension DetailViewModel: ErrorSectionController {
+    @MainActor
+    func changeState(to state: StateType) {
+        self.state = state
+    }
+
+    func onTapRetryButton() {
+        Task {
+            await loadConversionRates()
+        }
     }
 }

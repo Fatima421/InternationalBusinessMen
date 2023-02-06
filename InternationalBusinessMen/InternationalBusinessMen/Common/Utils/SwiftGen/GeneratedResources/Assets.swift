@@ -11,6 +11,7 @@ import SwiftUI
 // swiftlint:disable identifier_name line_length nesting type_body_length type_name
 internal enum Asset {
     internal static let accentColor = ColorAsset(name: "AccentColor")
+    internal static let orange = ColorAsset(name: "Orange")
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name
 

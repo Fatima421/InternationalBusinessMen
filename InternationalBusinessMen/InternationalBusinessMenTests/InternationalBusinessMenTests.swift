@@ -9,21 +9,66 @@ import XCTest
 @testable import InternationalBusinessMen
 
 final class InternationalBusinessMenTests: XCTestCase {
-
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    
+    let mockData = MockTestData()
+    var listViewModel: ListViewModel = MockTestData().listViewModel
+    var detailViewModel: DetailViewModel = MockTestData().detailViewModel
+    
+    override func setUp() async throws {
+        listViewModel.tradeList = mockData.tradeList
+        detailViewModel.groupedTransaction = mockData.groupedTransaction
     }
+    
+    func testGroupTransactionsBySKU() {
+        listViewModel.groupTransactionsBySKU()
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        XCTAssertEqual(listViewModel.groupedTransactions.count, 3)
+        
+        let groupedTransactionA = listViewModel.groupedTransactions.first(where: { $0.sku == "A" })
+        XCTAssertNotNil(groupedTransactionA)
+        XCTAssertEqual(groupedTransactionA?.count, 2)
+        XCTAssertEqual(groupedTransactionA?.currenciesAmounts.count, 2)
+        
+        let groupedTransactionB = listViewModel.groupedTransactions.first(where: { $0.sku == "B" })
+        XCTAssertNotNil(groupedTransactionB)
+        XCTAssertEqual(groupedTransactionB?.count, 1)
+        XCTAssertEqual(groupedTransactionB?.currenciesAmounts.count, 1)
+        
+        let groupedTransactionC = listViewModel.groupedTransactions.first(where: { $0.sku == "C" })
+        XCTAssertNotNil(groupedTransactionC)
+        XCTAssertEqual(groupedTransactionC?.count, 2)
+        XCTAssertEqual(groupedTransactionC?.currenciesAmounts.count, 2)
     }
+    
+    func testGetAmountConverted() {
+        let fromCurrency = Currency.USD
+        let toCurrency = Currency.EUR
+        let amount = 10.0
+        
+        let convertedAmount = detailViewModel.getAmountConverted(from: fromCurrency, to: toCurrency, amount: amount)
+        XCTAssertNotNil(convertedAmount, "Converted amount should not be nil")
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+        let expectedConvertedAmount = detailViewModel.getConversionRate(from: fromCurrency, to: toCurrency) ?? 0 * amount
+        XCTAssertEqual(convertedAmount, expectedConvertedAmount, "Converted amount should match expected value")
+    }
+    
+    @MainActor
+    func testCurrencyConversion() {
+        let expectedExchangeAmounts: [Double: CurrencyExchange] = [
+            10.0: CurrencyExchange(exchangeRate: detailViewModel.getConversionRate(from: .USD, to: .EUR) ?? 0,
+                                   convertedAmount: detailViewModel.getAmountConverted(from: .USD, to: .EUR, amount: 10.0)),
+            
+            20.0: CurrencyExchange(exchangeRate: detailViewModel.getConversionRate(from: .GBP, to: .EUR) ?? 0,
+                                   convertedAmount: detailViewModel.getAmountConverted(from: .GBP, to: .EUR, amount: 20.0)),
+            
+            30.0: CurrencyExchange(exchangeRate: 1.0,
+                                   convertedAmount: 30.0)
+        ]
+        
+        detailViewModel.currencyConversion()
+        
+        XCTAssertEqual(detailViewModel.groupedTransaction.exchangeAmount, expectedExchangeAmounts)
+        XCTAssertEqual(detailViewModel.totalPrice, expectedExchangeAmounts.values.reduce(0, { $0 + $1.convertedAmount }))
     }
 
     func testPerformanceExample() throws {

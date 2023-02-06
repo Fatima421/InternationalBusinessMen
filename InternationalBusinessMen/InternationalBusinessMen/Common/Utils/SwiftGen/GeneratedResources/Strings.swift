@@ -8,6 +8,28 @@ import SwiftUI
 // swiftlint:disable file_length
 
 public enum L10n {
+  /// Amount
+  public static let amount = LocalizedString(lookupKey: "amount")
+  /// Transaction Detail
+  public static let detailViewTitle = LocalizedString(lookupKey: "detail_view_title")
+  /// Error
+  public static let error = LocalizedString(lookupKey: "error")
+  /// There has been an error retrieving data
+  public static let errorMessage = LocalizedString(lookupKey: "error_message")
+  /// Grouped Elements
+  public static let groupedElements = LocalizedString(lookupKey: "grouped_elements")
+  /// Trade List
+  public static let listViewTitle = LocalizedString(lookupKey: "list_view_title")
+  /// Rate & Conversion
+  public static let rateConversion = LocalizedString(lookupKey: "rate_conversion")
+  /// Retry
+  public static let retry = LocalizedString(lookupKey: "retry")
+  /// SKU
+  public static let sku = LocalizedString(lookupKey: "sku")
+  /// Total
+  public static let total = LocalizedString(lookupKey: "total")
+  /// Total Elements
+  public static let totalElements = LocalizedString(lookupKey: "total_elements")
 }
 
 // MARK: - Implementation Details

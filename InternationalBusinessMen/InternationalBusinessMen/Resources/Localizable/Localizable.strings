@@ -5,3 +5,15 @@
   Created by Fatima Sahar on 3/2/23.
   
 */
+
+"list_view_title" = "Trade List";
+"detail_view_title" = "Transaction Detail";
+"total_elements" = "Total Elements";
+"grouped_elements" = "Grouped Elements";
+"sku" = "SKU";
+"amount" = "Amount";
+"rate_conversion" = "Rate & Conversion";
+"total" = "Total";
+"error" = "Error";
+"error_message" = "There has been an error retrieving data";
+"retry" = "Retry";

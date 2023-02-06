@@ -24,7 +24,7 @@ final class MainCoordinator: FlowCoordinator, ObservableObject {
     func getMainListFlow() -> UINavigationController {
         let viewController = UIHostingController(rootView: ListViewProvider.listView(coordinator: self))
         navigation = UINavigationController(rootViewController: viewController)
-        customizeNavigationTitle(title: "Trade List")
+        customizeNavigationTitle(title: Localized.listViewTitle.text)
         return navigation
     }
     
@@ -32,7 +32,7 @@ final class MainCoordinator: FlowCoordinator, ObservableObject {
     func goToDetailView(groupedTransaction: GroupedTransactionModel) {
         let viewController = UIHostingController(rootView: DetailViewProvider.detailView(groupedTransaction: groupedTransaction,
                                                                                          coordinator: self))
-        viewController.navigationItem.title = "Transaction Detail"
+        viewController.navigationItem.title = Localized.detailViewTitle.text
         navigation.pushViewController(viewController, animated: true)
     }
     
@@ -40,6 +40,7 @@ final class MainCoordinator: FlowCoordinator, ObservableObject {
     private func customizeNavigationTitle(title: String?) {
         navigation.navigationBar.prefersLargeTitles = true
         navigation.navigationItem.largeTitleDisplayMode = .always
+
         if let title = title {
             setLargeTitle(title: title)
         }

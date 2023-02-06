@@ -14,7 +14,6 @@ protocol API {
 
 class IBMAPI: RestManagerAsync, API {
     func getConversionRates() async throws -> ConversionList {
-        // TODO: gestionar error?
         try await sendRequest(url: IBMURLString.conversionRate.url, responseModel: ConversionList.self).get()
     }
     

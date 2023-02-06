@@ -17,3 +17,23 @@ public enum RestError: Error {
     case jsonParsingError(Any.Type)
     case unauthorized
 }
+
+extension RestError: Equatable {
+    public static func == (lhs: RestError, rhs: RestError) -> Bool {
+        switch (lhs, rhs) {
+        case (.generic, .generic),
+            (.noInternet, .noInternet),
+            (.badURL, .badURL),
+            (.badResponse, .badResponse),
+            (.emptyData, .emptyData),
+            (.unauthorized, .unauthorized):
+            return true
+        case (.network(let lhsCode), .network(let rhsCode)):
+            return lhsCode == rhsCode
+        case (.jsonParsingError(let lhsType), .jsonParsingError(let rhsType)):
+            return lhsType == rhsType
+        default:
+            return false
+        }
+    }
+}

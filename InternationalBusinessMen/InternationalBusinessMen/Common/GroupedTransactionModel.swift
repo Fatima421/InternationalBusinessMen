@@ -14,8 +14,3 @@ struct GroupedTransactionModel: Identifiable {
     var currenciesAmounts: [(currency: Currency, amount: Double)]
     var exchangeAmount: [Double: CurrencyExchange] = [:]
 }
-
-struct CurrencyExchange {
-    var exchangeRate: Double
-    var convertedAmount: Double
-}
