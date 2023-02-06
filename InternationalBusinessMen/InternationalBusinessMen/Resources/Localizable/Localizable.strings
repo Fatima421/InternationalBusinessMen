@@ -11,9 +11,11 @@
 "total_elements" = "Total Elements";
 "grouped_elements" = "Grouped Elements";
 "sku" = "SKU";
-"amount" = "Amount";
-"rate_conversion" = "Rate & Conversion";
+"amount" = "Amount:";
+"rate" = "Rate:";
+"conversion" = "Conversion:";
 "total" = "Total";
 "error" = "Error";
 "error_message" = "There has been an error retrieving data";
 "retry" = "Retry";
+"product" = "Product:";

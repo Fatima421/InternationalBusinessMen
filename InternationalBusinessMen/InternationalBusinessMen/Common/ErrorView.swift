@@ -33,7 +33,7 @@ struct ErrorView: View {
                 .font(.title)
                 .fontWeight(.bold)
             Text(Localized.errorMessage.text)
-                .foregroundColor(.gray)
+                .foregroundColor(Asset.gray.color)
                 .fontWeight(.bold)
             Button {
                 onTap()

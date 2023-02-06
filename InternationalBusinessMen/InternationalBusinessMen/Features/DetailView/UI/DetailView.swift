@@ -26,40 +26,42 @@ struct DetailView: View {
         List() {
             Text("\(Localized.sku.text): \(viewModel.groupedTransaction.sku)")
                 .font(.title)
-                .padding(.bottom, 10)
+                .fontWeight(.bold)
             HStack {
                 VStack(alignment: .leading, spacing: 10) {
-                    Text("\(Localized.amount.text): ")
+                    Text(Localized.amount.text)
                         .font(.headline)
                     ForEach(viewModel.groupedTransaction.currenciesAmounts, id: \.amount) { currencyAmount in
                         Text("\(currencyAmount.amount, specifier: "%.2f") \(currencyAmount.currency.rawValue)")
                     }
-                    Spacer()
                 }
                 Spacer()
                 VStack(alignment: .trailing, spacing: 10) {
-                    Text("\(Localized.rateConversion.text): ")
-                        .font(.headline)
-                    ForEach(Array(viewModel.groupedTransaction.exchangeAmount.keys), id: \.self) { currency in
-                        HStack(spacing: 10) {
-                            Text("\(viewModel.groupedTransaction.exchangeAmount[currency]?.exchangeRate ?? 0, specifier: "%.2f") -")
-                            Text("\(viewModel.groupedTransaction.exchangeAmount[currency]?.convertedAmount ?? 0, specifier: "%.2f") \(Currency.EUR.rawValue)")
-                        }
+                    HStack {
+                        Spacer()
+                        groupedTransactionCoulmn(showRate: true, headline: Localized.rate.text)
+                        Spacer()
+                        groupedTransactionCoulmn(showRate: false, headline: Localized.conversion.text)
                     }
-                    Text("\(Localized.total.text): \(viewModel.totalPrice, specifier: "%.2f") \(Currency.EUR.rawValue)")
-                        .font(.headline)
-                    Spacer()
                 }
             }
+            .padding(.top)
+            Text("\(Localized.total.text) \(viewModel.totalPrice, specifier: "%.2f") \(Currency.EUR.rawValue)")
+                .font(.headline)
         }
         .listStyle(.inset)
     }
     
-    private func groupedTransactionCoulmn(consultInfo: Double) -> some View {
-        ForEach(Array(viewModel.groupedTransaction.exchangeAmount.keys), id: \.self) { currency in
-            HStack(spacing: 10) {
-                Text("\(viewModel.groupedTransaction.exchangeAmount[currency]?.exchangeRate ?? 0, specifier: "%.2f") -")
-                Text("\(viewModel.groupedTransaction.exchangeAmount[currency]?.convertedAmount ?? 0, specifier: "%.2f") \(Currency.EUR.rawValue)")
+    private func groupedTransactionCoulmn(showRate: Bool, headline: String) -> some View {
+        VStack(spacing: 10) {
+            Text(headline)
+                .font(.headline)
+            ForEach(Array(viewModel.groupedTransaction.exchangeAmount.keys), id: \.self) { currency in
+                if showRate {
+                    Text("\(viewModel.groupedTransaction.exchangeAmount[currency]?.exchangeRate ?? 0, specifier: "%.2f")")
+                } else {
+                    Text("\(viewModel.groupedTransaction.exchangeAmount[currency]?.convertedAmount ?? 0, specifier: "%.2f") \(Currency.EUR.rawValue)")
+                }
             }
         }
     }

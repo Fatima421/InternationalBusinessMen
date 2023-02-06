@@ -44,7 +44,7 @@ final class MainCoordinator: FlowCoordinator, ObservableObject {
         if let title = title {
             setLargeTitle(title: title)
         }
-        
+
         if #available(iOS 16.0, *) {
             navigation.navigationBar.shadowImage = UIImage()
         }

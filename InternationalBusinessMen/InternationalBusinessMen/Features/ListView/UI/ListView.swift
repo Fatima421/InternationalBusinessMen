@@ -23,18 +23,29 @@ struct ListView: View {
     }
     
     var section: some View {
-        VStack(alignment: .trailing) {
+        VStack(alignment: .trailing, spacing: 10) {
             HStack {
                 Text("\(Localized.totalElements.text): \(viewModel.tradeList.count)")
+                    .fontWeight(.bold)
                 Spacer()
                 Text("\(Localized.groupedElements.text): \(viewModel.groupedTransactions.count)")
+                    .fontWeight(.bold)
             }
-            .padding()
+            .foregroundColor(Asset.gray.color)
+            .padding(.horizontal, 25)
+            .padding(.top)
+            
             List {
                 ForEach(viewModel.groupedTransactions) { transaction in
                     HStack {
-                        Text("\(Localized.sku.text): \(transaction.sku)")
+                        Text("\(Localized.product.text) \(transaction.sku)")
+                            .font(.title3)
                         Spacer()
+                        Image(systemName: SystemIcons.rightArrow.rawValue)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 20, height: 20)
+                            .foregroundColor(Asset.gray.color)
                     }
                     .onTapGesture {
                         viewModel.goToDetailView(transaction)
@@ -42,6 +53,7 @@ struct ListView: View {
                 }
             }
             .listStyle(.inset)
+            .navigationTitle(Localized.listViewTitle.text)
         }
     }
 }

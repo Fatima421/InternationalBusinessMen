@@ -8,8 +8,10 @@ import SwiftUI
 // swiftlint:disable file_length
 
 public enum L10n {
-  /// Amount
+  /// Amount:
   public static let amount = LocalizedString(lookupKey: "amount")
+  /// Conversion:
+  public static let conversion = LocalizedString(lookupKey: "conversion")
   /// Transaction Detail
   public static let detailViewTitle = LocalizedString(lookupKey: "detail_view_title")
   /// Error
@@ -20,8 +22,10 @@ public enum L10n {
   public static let groupedElements = LocalizedString(lookupKey: "grouped_elements")
   /// Trade List
   public static let listViewTitle = LocalizedString(lookupKey: "list_view_title")
-  /// Rate & Conversion
-  public static let rateConversion = LocalizedString(lookupKey: "rate_conversion")
+  /// Product:
+  public static let product = LocalizedString(lookupKey: "product")
+  /// Rate:
+  public static let rate = LocalizedString(lookupKey: "rate")
   /// Retry
   public static let retry = LocalizedString(lookupKey: "retry")
   /// SKU
