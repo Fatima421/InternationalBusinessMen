@@ -10,8 +10,6 @@ import SwiftUI
 struct ErrorView: View {
     var error: RestError
     var onTap: () -> Void
-
-    private let maxWidthForIpad: CGFloat = 400
     
     var body: some View {
         VStack {
@@ -51,7 +49,6 @@ struct ErrorView: View {
             }
         }
         .fixedSize(horizontal: false, vertical: true)
-        .frame(maxWidth: maxWidthForIpad)
     }
 }
 

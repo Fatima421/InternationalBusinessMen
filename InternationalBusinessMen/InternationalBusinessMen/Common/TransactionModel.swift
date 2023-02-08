@@ -8,17 +8,14 @@
 import Foundation
 import SwiftUI
 
-struct TransactionModel: Identifiable, Hashable {
-    var id: UUID
+struct TransactionModel: Hashable {
     var sku: String
     var amount: Double
     var currency: Currency
-    var totalPrice: Double = 0
 }
 
 extension TransactionModel {
     init(transactionModelResponse: TransactionAPIModel) {
-        self.id = UUID()
         self.sku = transactionModelResponse.sku
         self.amount = transactionModelResponse.amount
         self.currency = Currency(rawValue: transactionModelResponse.currency) ?? .EUR
