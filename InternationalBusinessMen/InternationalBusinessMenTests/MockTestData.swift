@@ -20,9 +20,9 @@ class MockTestData {
                                                      currenciesAmounts: [(currency: .USD, amount: 10.0),
                                                                          (currency: .GBP, amount: 20.0),
                                                                          (currency: .EUR, amount: 30.0)])
-    let tradeList = [TransactionModel(id: UUID(), sku: "A", amount: 10.0, currency: .USD),
-                     TransactionModel(id: UUID(), sku: "A", amount: 15.0, currency: .EUR),
-                     TransactionModel(id: UUID(), sku: "B", amount: 20.0, currency: .AUD),
-                     TransactionModel(id: UUID(), sku: "C", amount: 25.0, currency: .SEK),
-                     TransactionModel(id: UUID(), sku: "C", amount: 30.0, currency: .INR)]
+    let tradeList = [TransactionModel(sku: "A", amount: 10.0, currency: .USD),
+                     TransactionModel(sku: "A", amount: 15.0, currency: .EUR),
+                     TransactionModel(sku: "B", amount: 20.0, currency: .AUD),
+                     TransactionModel(sku: "C", amount: 25.0, currency: .SEK),
+                     TransactionModel(sku: "C", amount: 30.0, currency: .INR)]
 }
